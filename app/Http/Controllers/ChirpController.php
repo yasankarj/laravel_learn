@@ -6,15 +6,17 @@ use App\Models\Chirp;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ChirpController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(): Response
     {
-        return view('chirps.index', [
+        return Inertia::render('Chirps/Index', [
             'chirps' => Chirp::with('user')->latest()->get(),
         ]);
     }
